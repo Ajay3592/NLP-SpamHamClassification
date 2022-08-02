@@ -2,3 +2,4 @@
 
 1. Regular expressions
 2. Text preprocessing using NLTK
+3. OneHotEncoding
