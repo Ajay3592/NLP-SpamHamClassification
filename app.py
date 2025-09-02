@@ -7,18 +7,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from joblib import load
 import re
 
-# Load the model
-#with open("model/spam_detection-0.5.pkl", "rb") as f:
-#    model = pickle.load(f)
+# Load the model and vectorizer files
 
-model = load('model/model1.joblib')
+model = load('model1.joblib')
 
-#with open("model/vectorizer-0.5.pkl", "rb") as f1:
-#    vectors = pickle.load(f1)
-
-vectors = load('model/vectorizer1.joblib')
-
-#print("Model load completed")
+vectors = load('vectorizer1.joblib')
 
 classes = {0: "Not Spam", 1: "Spam"}
 
@@ -50,5 +43,6 @@ def home():
 
 @app.post("/predict", response_model=PredictionOut)
 def predict(payload: TextIn):
-     language = predict_pipeline(payload.text)
-     return {"EmailDetectedAs": language}
+     detected_value = predict_pipeline(payload.text)
+
+     return {"EmailDetectedAs": detected_value}
